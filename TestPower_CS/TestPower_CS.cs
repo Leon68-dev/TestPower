@@ -32,10 +32,21 @@ namespace TestPower
 			};
 			return a + b + c;
 		}
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
+
+		static void runTest()
+		{
+            int time = Environment.TickCount;
+            double val = check();
+            time = Environment.TickCount - time;
+            //Console.WriteLine( "time: " + time + " value = " + val + ". press any key to exit...\n" );
+            Console.WriteLine("time: " + time + " press any key to exit...\n");
+        }
+
+
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
 		static void Main(string[] args)
 		{
 			//
@@ -43,12 +54,9 @@ namespace TestPower
 			//
 			Console.WriteLine( "press any key to start...\n" );
 			Console.ReadLine();
-			int time = Environment.TickCount;
-			double val = check();
-			time = Environment.TickCount  - time;
-			//Console.WriteLine( "time: " + time + " value = " + val + ". press any key to exit...\n" );
-			Console.WriteLine( "time: " + time + " press any key to exit...\n" );
-			Console.ReadLine();
+            runTest();
+
+            Console.ReadLine();
 		}
 	}
 }
