@@ -1,2 +1,4 @@
 /*.suo
 /.vs
+/TestPowerNetCore/bin
+/TestPowerNetCore/obj
