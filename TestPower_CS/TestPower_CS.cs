@@ -42,6 +42,14 @@ namespace TestPower
             Console.WriteLine("time: " + time + " press any key to exit...\n");
         }
 
+        static void runTestTck()
+        {
+            var ticks = DateTime.Now.Ticks;
+            check();
+            ticks = DateTime.Now.Ticks - ticks;
+            Console.WriteLine("time: " + TimeSpan.FromTicks(ticks) + " press any key to exit...\n");
+        }
+
 
         /// <summary>
         /// The main entry point for the application.
@@ -55,7 +63,7 @@ namespace TestPower
 			Console.WriteLine( "press any key to start...\n" );
 			Console.ReadLine();
             runTest();
-
+			runTestTck();
             Console.ReadLine();
 		}
 	}

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPower_CS", "TestPower_C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPowerNetCore", "TestPowerNetCore\TestPowerNetCore.csproj", "{19DCF284-52FE-4C54-B3DA-DE6E260AACD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPowerSumNetCore", "TestPowerSumNetCore\TestPowerSumNetCore.csproj", "{C9704647-56D1-4413-B091-33679B44E80C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPowerSumNet", "TestPowerSumNet\TestPowerSumNet.csproj", "{C97F18D6-59E2-444D-AD45-03146B6421CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{19DCF284-52FE-4C54-B3DA-DE6E260AACD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19DCF284-52FE-4C54-B3DA-DE6E260AACD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19DCF284-52FE-4C54-B3DA-DE6E260AACD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9704647-56D1-4413-B091-33679B44E80C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9704647-56D1-4413-B091-33679B44E80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9704647-56D1-4413-B091-33679B44E80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9704647-56D1-4413-B091-33679B44E80C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97F18D6-59E2-444D-AD45-03146B6421CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97F18D6-59E2-444D-AD45-03146B6421CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97F18D6-59E2-444D-AD45-03146B6421CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97F18D6-59E2-444D-AD45-03146B6421CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
