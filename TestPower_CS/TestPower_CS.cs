@@ -38,8 +38,7 @@ namespace TestPower
             int time = Environment.TickCount;
             double val = check();
             time = Environment.TickCount - time;
-            //Console.WriteLine( "time: " + time + " value = " + val + ". press any key to exit...\n" );
-            Console.WriteLine("time: " + time + " press any key to exit...\n");
+            Console.WriteLine("time: " + time);
         }
 
         static void runTestTck()
@@ -47,7 +46,7 @@ namespace TestPower
             var ticks = DateTime.Now.Ticks;
             check();
             ticks = DateTime.Now.Ticks - ticks;
-            Console.WriteLine("time: " + TimeSpan.FromTicks(ticks) + " press any key to exit...\n");
+            Console.WriteLine("time: " + TimeSpan.FromTicks(ticks));
         }
 
 
@@ -57,13 +56,12 @@ namespace TestPower
         [STAThread]
 		static void Main(string[] args)
 		{
-			//
-			// TODO: Add code to start application here
-			//
+            check(); 
 			Console.WriteLine( "press any key to start...\n" );
 			Console.ReadLine();
             runTest();
 			runTestTck();
+            Console.WriteLine("press any key to exit...\n");
             Console.ReadLine();
 		}
 	}

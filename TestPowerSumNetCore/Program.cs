@@ -6,16 +6,17 @@ class TestPowerSumNetCore
     public static void check()
     {
         long cc = 0;
-        Console.WriteLine("cc: " + cc.ToString());  
+        //Console.WriteLine("cc: " + cc.ToString());  
         for (long i = 0; i < 1000000; i++)
         {
             cc++;
         }
-        Console.WriteLine("cc: " + cc.ToString());
+        //Console.WriteLine("cc: " + cc.ToString());
     }
 
     static void runTest()
     {
+        check();
         var ticks = DateTime.Now.Ticks;
         check();
         ticks = DateTime.Now.Ticks - ticks;
