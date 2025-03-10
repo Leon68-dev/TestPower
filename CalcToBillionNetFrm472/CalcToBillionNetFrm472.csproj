@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{438ADB83-E87C-4B57-88C5-F674316F07AD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CalctoToBillionNetFrm472</RootNamespace>
-    <AssemblyName>CalctoToBillionNetFrm472</AssemblyName>
+    <RootNamespace>CalcToBillionNetFrm472</RootNamespace>
+    <AssemblyName>CalcToBillionNetFrm472</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>CalctoToBillionNetFrm472.Program</StartupObject>
+    <StartupObject>CalcToBillionNetFrm472.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
