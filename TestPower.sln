@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPowerNetCore", "TestPow
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPowerSumNetCore", "TestPowerSumNetCore\TestPowerSumNetCore.csproj", "{C9704647-56D1-4413-B091-33679B44E80C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalctoToBillionNetFrm472", "CaltoToBillionNetFrm472\CalctoToBillionNetFrm472.csproj", "{438ADB83-E87C-4B57-88C5-F674316F07AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaltcToBillionNet8", "CaltToBillionNet8\CaltcToBillionNet8.csproj", "{D85C3570-CD76-407C-A2E5-47A4074D792C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{C9704647-56D1-4413-B091-33679B44E80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9704647-56D1-4413-B091-33679B44E80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9704647-56D1-4413-B091-33679B44E80C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{438ADB83-E87C-4B57-88C5-F674316F07AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{438ADB83-E87C-4B57-88C5-F674316F07AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{438ADB83-E87C-4B57-88C5-F674316F07AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{438ADB83-E87C-4B57-88C5-F674316F07AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D85C3570-CD76-407C-A2E5-47A4074D792C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D85C3570-CD76-407C-A2E5-47A4074D792C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D85C3570-CD76-407C-A2E5-47A4074D792C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D85C3570-CD76-407C-A2E5-47A4074D792C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
