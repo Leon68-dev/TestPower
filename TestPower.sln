@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcToBillionNet8", "CalcTo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalcToBillionNetFrm472", "CalcToBillionNetFrm472\CalcToBillionNetFrm472.csproj", "{438ADB83-E87C-4B57-88C5-F674316F07AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPowerSumNetCoreWinFrm", "TestPowerSumNetCoreWinFrm\TestPowerSumNetCoreWinFrm.csproj", "{5207ADEE-9069-4CF6-BBDC-249AEB49242F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{438ADB83-E87C-4B57-88C5-F674316F07AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{438ADB83-E87C-4B57-88C5-F674316F07AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{438ADB83-E87C-4B57-88C5-F674316F07AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5207ADEE-9069-4CF6-BBDC-249AEB49242F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5207ADEE-9069-4CF6-BBDC-249AEB49242F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5207ADEE-9069-4CF6-BBDC-249AEB49242F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5207ADEE-9069-4CF6-BBDC-249AEB49242F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
