@@ -35,7 +35,7 @@
             // 
             // btnRunTest
             // 
-            btnRunTest.Location = new Point(12, 41);
+            btnRunTest.Location = new Point(158, 50);
             btnRunTest.Name = "btnRunTest";
             btnRunTest.Size = new Size(94, 29);
             btnRunTest.TabIndex = 0;
@@ -61,19 +61,20 @@
             lblResult.TabIndex = 2;
             lblResult.Text = "0";
             // 
-            // Form1
+            // FMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(376, 91);
+            ClientSize = new Size(408, 91);
             Controls.Add(lblResult);
             Controls.Add(label1);
             Controls.Add(btnRunTest);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "Form1";
+            Name = "FMain";
             Opacity = 0.8D;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Test calc SUM";
             ResumeLayout(false);
             PerformLayout();
