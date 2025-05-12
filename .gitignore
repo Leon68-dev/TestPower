@@ -21,3 +21,7 @@
 /TestPowerSumNetCoreWinFrm/bin
 /TestPowerSumNetCoreWinFrm/obj
 /TestPowerSumNetCoreWinFrm/TestPowerSumNetCoreWinFrm.csproj.user
+
+/TestPowerSumNetCoreMobile/bin
+/TestPowerSumNetCoreMobile/obj
+/TestPowerSumNetCoreMobile/TestPowerSumNetCoreMobile.csproj.user
