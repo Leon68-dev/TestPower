@@ -46,16 +46,16 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(2, 9);
             label1.Name = "label1";
-            label1.Size = new Size(287, 20);
+            label1.Size = new Size(295, 20);
             label1.TabIndex = 1;
-            label1.Text = "Time for calculate sum 1 to 1000000 (sec):";
+            label1.Text = "Time for calculate sum 1 to 1 000 000 (sec):";
             // 
             // lblResult
             // 
             lblResult.AutoSize = true;
-            lblResult.Location = new Point(298, 9);
+            lblResult.Location = new Point(303, 9);
             lblResult.Name = "lblResult";
             lblResult.Size = new Size(17, 20);
             lblResult.TabIndex = 2;
