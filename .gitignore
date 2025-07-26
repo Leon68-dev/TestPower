@@ -25,3 +25,6 @@
 /TestPowerSumNetCoreMobile/bin
 /TestPowerSumNetCoreMobile/obj
 /TestPowerSumNetCoreMobile/TestPowerSumNetCoreMobile.csproj.user
+
+/CpuBenchmark/bin
+/CpuBenchmark/obj
