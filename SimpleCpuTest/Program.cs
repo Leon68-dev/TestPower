@@ -13,17 +13,12 @@ namespace SimpleCpuTest
     {
         public static void Main(string[] args)
         {
-            // Запускаємо сам бенчмарк
             CpuBenchmark.Run();
         }
     }
 
-    /// <summary>
-    /// Клас, що містить всю логіку для тестування продуктивності процесора.
-    /// </summary>
     public static class CpuBenchmark
     {
-        // Кількість операцій для різних типів тестів
         private const long INT_OPERATIONS = 500_000_000;
         private const long FLOAT_OPERATIONS = 250_000_000;
         private const long FUNC_OPERATIONS = 5_000_000;
@@ -32,7 +27,6 @@ namespace SimpleCpuTest
         private static readonly List<double> allMipsResults = new List<double>();
         private static readonly Stopwatch totalTimeStopwatch = new Stopwatch();
 
-        // Поле для запису у файл
         private static StreamWriter logFileWriter;
 
         public static void Run()

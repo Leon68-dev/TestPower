@@ -34,13 +34,14 @@ extern double check()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	printf( "press any key to start...\n" );
-	printf( "\n" );
-	getch();
+	//printf( "press any key to start...\n" );
+	//printf( "\n" );
+	//getch();
 	DWORD time = GetTickCount();
 	check();
 	time = GetTickCount() - time;
-	printf( "time: %i \npress any key to exit...\n", time );
-	getch();
+	//printf( "time: %i \npress any key to exit...\n", time );
+	printf("time: %i \n", time);
+	//getch();
 	return 0;
 };

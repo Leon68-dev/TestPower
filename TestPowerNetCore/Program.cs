@@ -56,12 +56,12 @@ namespace TestPower
         static void Main(string[] args)
         {
             check();
-            Console.WriteLine("press any key to start...\n");
-            Console.ReadLine();
+            //Console.WriteLine("press any key to start...\n");
+            //Console.ReadLine();
             runTest();
             runTestTck();
-            Console.WriteLine("press any key to exit...\n");
-            Console.ReadLine();
+            //Console.WriteLine("press any key to exit...\n");
+            //Console.ReadLine();
         }
     }
 }
