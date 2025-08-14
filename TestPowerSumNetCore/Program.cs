@@ -36,7 +36,7 @@ namespace TestPowerSumNetCore
             Console.WriteLine("press any key to start...");
             Console.ReadLine();
 
-            Console.WriteLine($"Time for calculate sum 1 to 1 000 000 (sec): {testPower.runTest().ToString("0.00000")} \n");
+            Console.WriteLine($"Time (sec): {testPower.runTest().ToString("0.00000")} \n");
 
             Console.WriteLine("press any key to exit...\n");
             Console.ReadLine();

@@ -168,28 +168,90 @@ namespace SimpleCpuTest
             var results = new List<double>();
 
             sbyte sbyteVal1 = 10, sbyteVal2 = 5; sbyte sbyteRes = 0;
-            results.Add(RunMipsTest("Execute 8 bit Additions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) sbyteRes = (sbyte)(sbyteVal1 + sbyteVal2); }));
-            results.Add(RunMipsTest("Execute 8 bit Substractions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) sbyteRes = (sbyte)(sbyteVal1 - sbyteVal2); }));
-            results.Add(RunMipsTest("Execute 8 bit Multiplications", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) sbyteRes = (sbyte)(sbyteVal1 * sbyteVal2); }));
-            results.Add(RunMipsTest("Execute 8 bit Divisions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) sbyteRes = (sbyte)(sbyteVal1 / sbyteVal2); }));
+
+            results.Add(RunMipsTest("Execute 8 bit Additions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    sbyteRes = (sbyte)(sbyteVal1 + sbyteVal2); 
+            }));
+            
+            results.Add(RunMipsTest("Execute 8 bit Substractions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    sbyteRes = (sbyte)(sbyteVal1 - sbyteVal2); 
+            }));
+            
+            results.Add(RunMipsTest("Execute 8 bit Multiplications", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    sbyteRes = (sbyte)(sbyteVal1 * sbyteVal2); 
+            }));
+            
+            results.Add(RunMipsTest("Execute 8 bit Divisions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    sbyteRes = (sbyte)(sbyteVal1 / sbyteVal2); 
+            }));
+            
             PrintAverage("8 bit (Short Inteder) arithmetic operations", results);
             var overallIntResults = new List<double>(results);
             results.Clear();
 
             short shortVal1 = 10, shortVal2 = 5; short shortRes = 0;
-            results.Add(RunMipsTest("Execute 16 bit Additions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) shortRes = (short)(shortVal1 + shortVal2); }));
-            results.Add(RunMipsTest("Execute 16 bit Substractions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) shortRes = (short)(shortVal1 - shortVal2); }));
-            results.Add(RunMipsTest("Execute 16 bit Multiplications", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) shortRes = (short)(shortVal1 * shortVal2); }));
-            results.Add(RunMipsTest("Execute 16 bit Divisions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) shortRes = (short)(shortVal1 / shortVal2); }));
+
+            results.Add(RunMipsTest("Execute 16 bit Additions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    shortRes = (short)(shortVal1 + shortVal2); 
+            }));
+
+            results.Add(RunMipsTest("Execute 16 bit Substractions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    shortRes = (short)(shortVal1 - shortVal2); 
+            }));
+
+            results.Add(RunMipsTest("Execute 16 bit Multiplications", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    shortRes = (short)(shortVal1 * shortVal2); 
+            }));
+
+            results.Add(RunMipsTest("Execute 16 bit Divisions", INT_OPERATIONS, () => 
+            { for (long i = 0; i < INT_OPERATIONS; i++) 
+                    shortRes = (short)(shortVal1 / shortVal2); 
+            }));
+
             PrintAverage("16 bit (Small Inteder) arithmetic operations", results);
             overallIntResults.AddRange(results);
             results.Clear();
 
             int intVal1 = 10, intVal2 = 5; int intRes = 0;
-            results.Add(RunMipsTest("Execute 32 bit Additions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) intRes = intVal1 + intVal2; }));
-            results.Add(RunMipsTest("Execute 32 bit Substractions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) intRes = intVal1 - intVal2; }));
-            results.Add(RunMipsTest("Execute 32 bit Multiplications", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) intRes = intVal1 * intVal2; }));
-            results.Add(RunMipsTest("Execute 32 bit Divisions", INT_OPERATIONS, () => { for (long i = 0; i < INT_OPERATIONS; i++) intRes = intVal1 / intVal2; }));
+            
+            results.Add(RunMipsTest("Execute 32 bit Additions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    intRes = intVal1 + intVal2; 
+            }));
+
+            results.Add(RunMipsTest("Execute 32 bit Substractions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    intRes = intVal1 - intVal2; 
+            }));
+
+            results.Add(RunMipsTest("Execute 32 bit Multiplications", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    intRes = intVal1 * intVal2; 
+            }));
+
+            results.Add(RunMipsTest("Execute 32 bit Divisions", INT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < INT_OPERATIONS; i++) 
+                    intRes = intVal1 / intVal2; 
+            }));
+
             PrintAverage("32 bit (Long Inteder) arithmetic operations", results);
             overallIntResults.AddRange(results);
 
@@ -202,28 +264,90 @@ namespace SimpleCpuTest
             var results = new List<double>();
 
             float floatVal1 = 1.23f, floatVal2 = 4.56f; float floatRes = 0;
-            results.Add(RunMipsTest("Execute 32 bit (Single) Additions", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) floatRes = floatVal1 + floatVal2; }));
-            results.Add(RunMipsTest("Execute 32 bit (Single) Substractions", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) floatRes = floatVal1 - floatVal2; }));
-            results.Add(RunMipsTest("Execute 32 bit (Single) Multiplications", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) floatRes = floatVal1 * floatVal2; }));
-            results.Add(RunMipsTest("Execute 32 bit (Single) Divisions", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) floatRes = floatVal1 / floatVal2; }));
+            
+            results.Add(RunMipsTest("Execute 32 bit (Single) Additions", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    floatRes = floatVal1 + floatVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 32 bit (Single) Substractions", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    floatRes = floatVal1 - floatVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 32 bit (Single) Multiplications", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    floatRes = floatVal1 * floatVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 32 bit (Single) Divisions", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    floatRes = floatVal1 / floatVal2; 
+            }));
+
             PrintAverage("32 bit (Single) arithmetic operations", results);
             var overallFpResults = new List<double>(results);
             results.Clear();
 
             double doubleVal1 = 1.23, doubleVal2 = 4.56; double doubleRes = 0;
-            results.Add(RunMipsTest("Execute 64 bit (Double) Additions", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) doubleRes = doubleVal1 + doubleVal2; }));
-            results.Add(RunMipsTest("Execute 64 bit (Double) Substractions", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) doubleRes = doubleVal1 - doubleVal2; }));
-            results.Add(RunMipsTest("Execute 64 bit (Double) Multiplications", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) doubleRes = doubleVal1 * doubleVal2; }));
-            results.Add(RunMipsTest("Execute 64 bit (Double) Divisions", FLOAT_OPERATIONS, () => { for (long i = 0; i < FLOAT_OPERATIONS; i++) doubleRes = doubleVal1 / doubleVal2; }));
+            results.Add(RunMipsTest("Execute 64 bit (Double) Additions", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    doubleRes = doubleVal1 + doubleVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 64 bit (Double) Substractions", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    doubleRes = doubleVal1 - doubleVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 64 bit (Double) Multiplications", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    doubleRes = doubleVal1 * doubleVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 64 bit (Double) Divisions", FLOAT_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS; i++) 
+                    doubleRes = doubleVal1 / doubleVal2; 
+            }));
+            
             PrintAverage("64 bit (Double) arithmetic operations", results);
             overallFpResults.AddRange(results);
             results.Clear();
 
             decimal decimalVal1 = 1.23m, decimalVal2 = 4.56m; decimal decimalRes = 0;
-            results.Add(RunMipsTest("Execute 128 bit (Extended) Additions", FLOAT_OPERATIONS / 10, () => { for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) decimalRes = decimalVal1 + decimalVal2; }));
-            results.Add(RunMipsTest("Execute 128 bit (Extended) Substractions", FLOAT_OPERATIONS / 10, () => { for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) decimalRes = decimalVal1 - decimalVal2; }));
-            results.Add(RunMipsTest("Execute 128 bit (Extended) Multiplications", FLOAT_OPERATIONS / 10, () => { for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) decimalRes = decimalVal1 * decimalVal2; }));
-            results.Add(RunMipsTest("Execute 128 bit (Extended) Divisions", FLOAT_OPERATIONS / 10, () => { for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) decimalRes = decimalVal1 / decimalVal2; }));
+            
+            results.Add(RunMipsTest("Execute 128 bit (Extended) Additions", FLOAT_OPERATIONS / 10, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) 
+                    decimalRes = decimalVal1 + decimalVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 128 bit (Extended) Substractions", FLOAT_OPERATIONS / 10, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) 
+                    decimalRes = decimalVal1 - decimalVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 128 bit (Extended) Multiplications", FLOAT_OPERATIONS / 10, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) 
+                    decimalRes = decimalVal1 * decimalVal2; 
+            }));
+            
+            results.Add(RunMipsTest("Execute 128 bit (Extended) Divisions", FLOAT_OPERATIONS / 10, () => 
+            { 
+                for (long i = 0; i < FLOAT_OPERATIONS / 10; i++) 
+                    decimalRes = decimalVal1 / decimalVal2; 
+            }));
+            
             PrintAverage("128 bit (Extended) arithmetic operations", results);
             overallFpResults.AddRange(results);
 
@@ -234,25 +358,71 @@ namespace SimpleCpuTest
         {
             PrintSectionHeader("SQR & SQRT ARITHMETIC FUNCTIONS");
             var results = new List<double>();
+            
             double num = 1234567890.0; double res = 0;
-            results.Add(RunMipsTest("Test Square of 1234567890", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = num * num; }));
-            results.Add(RunMipsTest("Test Square root of 1234567890", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = Math.Sqrt(num); }));
+            
+            results.Add(RunMipsTest("Test Square of 1234567890", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = num * num; 
+            }));
+            
+            results.Add(RunMipsTest("Test Square root of 1234567890", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = Math.Sqrt(num); 
+            }));
+            
             PrintAverage("SQR & SQRT ARITHMETIC FUNCTIONS AVERAGE", results);
 
             PrintSectionHeader("TRIGONOMETRIC FUNCTIONS");
             results.Clear();
+            
             double angle = 0.785; // 45 degrees in radians
-            results.Add(RunMipsTest("Sinus", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = Math.Sin(angle); }));
-            results.Add(RunMipsTest("Cosinus", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = Math.Cos(angle); }));
-            results.Add(RunMipsTest("Tangent", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = Math.Tan(angle); }));
-            results.Add(RunMipsTest("Arcus Tangent", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = Math.Atan(angle); }));
+            
+            results.Add(RunMipsTest("Sinus", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = Math.Sin(angle); 
+            }));
+            
+            results.Add(RunMipsTest("Cosinus", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = Math.Cos(angle); 
+            }));
+            
+            results.Add(RunMipsTest("Tangent", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = Math.Tan(angle); 
+            }));
+            
+            results.Add(RunMipsTest("Arcus Tangent", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = Math.Atan(angle); 
+            }));
+            
             PrintAverage("TRIGONOMETRIC FUNCTIONS AVERAGE", results);
 
             PrintSectionHeader("LOGARITHMIC FUNCTIONS");
             results.Clear();
+            
             double logVal = 100.0;
-            results.Add(RunMipsTest("Natural Logarithm", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = Math.Log(logVal); }));
-            results.Add(RunMipsTest("Exponent", FUNC_OPERATIONS, () => { for (long i = 0; i < FUNC_OPERATIONS; i++) res = Math.Exp(logVal); }));
+            
+            results.Add(RunMipsTest("Natural Logarithm", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = Math.Log(logVal); 
+            }));
+            
+            results.Add(RunMipsTest("Exponent", FUNC_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < FUNC_OPERATIONS; i++) 
+                    res = Math.Exp(logVal); 
+            }));
+            
             PrintAverage("LOGARITHMIC FUNCTIONS AVERAGE", results);
         }
 
@@ -260,12 +430,33 @@ namespace SimpleCpuTest
         {
             PrintSectionHeader("LOGICAL INSTRUCTIONS");
             var results = new List<double>();
+
             int val1 = unchecked((int)0xAAAAAAAA), val2 = 0x55555555; int res = 0;
 
-            results.Add(RunMipsTest("Logical And Instruction", LOGICAL_OPERATIONS, () => { for (long i = 0; i < LOGICAL_OPERATIONS; i++) res = val1 & val2; }));
-            results.Add(RunMipsTest("Logical Or Instruction", LOGICAL_OPERATIONS, () => { for (long i = 0; i < LOGICAL_OPERATIONS; i++) res = val1 | val2; }));
-            results.Add(RunMipsTest("Logical Xor Instruction", LOGICAL_OPERATIONS, () => { for (long i = 0; i < LOGICAL_OPERATIONS; i++) res = val1 ^ val2; }));
-            results.Add(RunMipsTest("Logical Not Instruction", LOGICAL_OPERATIONS, () => { for (long i = 0; i < LOGICAL_OPERATIONS; i++) res = ~val1; }));
+            results.Add(RunMipsTest("Logical And Instruction", LOGICAL_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < LOGICAL_OPERATIONS; i++) 
+                    res = val1 & val2; 
+            }));
+            
+            results.Add(RunMipsTest("Logical Or Instruction", LOGICAL_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < LOGICAL_OPERATIONS; i++) 
+                    res = val1 | val2; 
+            }));
+            
+            results.Add(RunMipsTest("Logical Xor Instruction", LOGICAL_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < LOGICAL_OPERATIONS; i++) 
+                    res = val1 ^ val2; 
+            }));
+            
+            results.Add(RunMipsTest("Logical Not Instruction", LOGICAL_OPERATIONS, () => 
+            { 
+                for (long i = 0; i < LOGICAL_OPERATIONS; i++) 
+                    res = ~val1; 
+            }));
+            
             PrintAverage("LOGICAL INSTRUCTIONS AVERAGE", results);
         }
 
@@ -287,8 +478,8 @@ namespace SimpleCpuTest
 
         private static void RunQuickSortTest()
         {
-            int stringCount = 70000;
-            int stringLength = 70;
+            int stringCount = 80000;
+            int stringLength = 80;
 
             RunTimeTest($"QUICK SORT - {stringCount} strings with {stringLength} length", () =>
             {
@@ -310,7 +501,7 @@ namespace SimpleCpuTest
 
         private static void RunPrimeGenerationTest()
         {
-            int limit = 700000;
+            int limit = 800000;
             int primeCount = 0;
 
             RunTimeTest($"GENERATE PRIME NUMBERS TO {limit}", () =>
