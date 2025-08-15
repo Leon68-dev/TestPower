@@ -2,9 +2,6 @@
 
 namespace TestPower
 {
-    /// <summary>
-    /// Summary description for Class1.
-    /// </summary>
     class TestPower_CS
     {
         public const int size = 2048;
