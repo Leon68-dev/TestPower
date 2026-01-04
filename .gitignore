@@ -34,3 +34,7 @@
 
 /TestPowerSumNetCore/bin
 /TestPowerSumNetCore/obj
+
+/SimpleCpuTestAndroid/bin/*
+/SimpleCpuTestAndroid/obj/*
+/SimpleCpuTestAndroid/SimpleCpuTestAndroid.csproj.user
