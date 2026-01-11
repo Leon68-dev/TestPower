@@ -40,3 +40,7 @@
 /SimpleCpuTestAndroid/bin/*
 /SimpleCpuTestAndroid/obj/*
 /SimpleCpuTestAndroid/SimpleCpuTestAndroid.csproj.user
+
+/SimpleCpuTestCsUI/bin/*
+/SimpleCpuTestCsUI/obj/*
+/SimpleCpuTestCsUI/SimpleCpuTestCsUI.csproj.user
