@@ -249,7 +249,7 @@ namespace SimpleCpuTest
             PrintAverage("32 bit (Long Inteder) arithmetic operations", results);
             overallIntResults.AddRange(results);
 
-            PrintAverage("INTEGER ARITHMETIC: AVERAGE", overallIntResults);
+            PrintAverage("INTEGER ARITHMETIC: ", overallIntResults);
         }
 
         private static void RunFloatingPointTests()
@@ -367,7 +367,7 @@ namespace SimpleCpuTest
                     res = Math.Sqrt(num); 
             }));
             
-            PrintAverage("SQR & SQRT ARITHMETIC FUNCTIONS AVERAGE", results);
+            PrintAverage("SQR & SQRT ARITHMETIC FUNCTIONS", results);
 
             PrintSectionHeader("TRIGONOMETRIC FUNCTIONS");
             results.Clear();
@@ -398,7 +398,7 @@ namespace SimpleCpuTest
                     res = Math.Atan(angle); 
             }));
             
-            PrintAverage("TRIGONOMETRIC FUNCTIONS AVERAGE", results);
+            PrintAverage("TRIGONOMETRIC FUNCTIONS", results);
 
             PrintSectionHeader("LOGARITHMIC FUNCTIONS");
             results.Clear();
@@ -417,7 +417,7 @@ namespace SimpleCpuTest
                     res = Math.Exp(logVal); 
             }));
             
-            PrintAverage("LOGARITHMIC FUNCTIONS AVERAGE", results);
+            PrintAverage("LOGARITHMIC FUNCTIONS", results);
         }
 
         private static void RunLogicalTests()
@@ -451,7 +451,7 @@ namespace SimpleCpuTest
                     res = ~val1; 
             }));
             
-            PrintAverage("LOGICAL INSTRUCTIONS AVERAGE", results);
+            PrintAverage("LOGICAL INSTRUCTIONS", results);
         }
 
         private static void RunRecursiveFactorialTest()

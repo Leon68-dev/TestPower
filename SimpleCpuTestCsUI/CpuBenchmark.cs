@@ -286,7 +286,7 @@ namespace SimpleCpuTestCsUI
             PrintAverage("32 bit (Long Inteder) arithmetic operations", results);
             overallIntResults.AddRange(results);
 
-            PrintAverage("INTEGER ARITHMETIC: AVERAGE", overallIntResults);
+            PrintAverage("INTEGER ARITHMETIC ", overallIntResults);
         }
 
         private static void RunFloatingPointTests()
@@ -382,7 +382,7 @@ namespace SimpleCpuTestCsUI
             PrintAverage("128 bit (Extended) arithmetic operations", results);
             overallFpResults.AddRange(results);
 
-            PrintAverage("FLOATING POINT ARITHMETIC:", overallFpResults);
+            PrintAverage("FLOATING POINT", overallFpResults);
         }
 
         private static void RunFunctionTests()
@@ -404,7 +404,7 @@ namespace SimpleCpuTestCsUI
                     res = Math.Sqrt(num);
             }));
 
-            PrintAverage("SQR & SQRT ARITHMETIC FUNCTIONS AVERAGE", results);
+            PrintAverage("SQR & SQRT ARITHMETIC FUNCTIONS", results);
 
             PrintSectionHeader("TRIGONOMETRIC FUNCTIONS");
             results.Clear();
@@ -435,7 +435,7 @@ namespace SimpleCpuTestCsUI
                     res = Math.Atan(angle);
             }));
 
-            PrintAverage("TRIGONOMETRIC FUNCTIONS AVERAGE", results);
+            PrintAverage("TRIGONOMETRIC FUNCTIONS", results);
 
             PrintSectionHeader("LOGARITHMIC FUNCTIONS");
             results.Clear();
@@ -454,7 +454,7 @@ namespace SimpleCpuTestCsUI
                     res = Math.Exp(logVal);
             }));
 
-            PrintAverage("LOGARITHMIC FUNCTIONS AVERAGE", results);
+            PrintAverage("LOGARITHMIC FUNCTIONS", results);
         }
 
         private static void RunLogicalTests()
@@ -488,7 +488,7 @@ namespace SimpleCpuTestCsUI
                     res = ~val1;
             }));
 
-            PrintAverage("LOGICAL INSTRUCTIONS AVERAGE", results);
+            PrintAverage("LOGICAL INSTRUCTIONS", results);
         }
 
         private static void RunRecursiveFactorialTest()
