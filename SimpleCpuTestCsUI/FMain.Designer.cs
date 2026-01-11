@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FMain));
             btnStart = new Button();
-            txtLog = new RichTextBox();
             progressBar1 = new ProgressBar();
+            txtLog = new RichTextBox();
             SuspendLayout();
             // 
             // btnStart
@@ -44,6 +44,14 @@
             btnStart.UseVisualStyleBackColor = true;
             btnStart.Click += btnStart_Click;
             // 
+            // progressBar1
+            // 
+            progressBar1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            progressBar1.Location = new Point(194, 12);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(372, 29);
+            progressBar1.TabIndex = 2;
+            // 
             // txtLog
             // 
             txtLog.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -53,25 +61,17 @@
             txtLog.Location = new Point(12, 47);
             txtLog.Name = "txtLog";
             txtLog.ReadOnly = true;
-            txtLog.Size = new Size(650, 518);
-            txtLog.TabIndex = 1;
+            txtLog.Size = new Size(554, 421);
+            txtLog.TabIndex = 5;
             txtLog.Text = "";
-            // 
-            // progressBar1
-            // 
-            progressBar1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            progressBar1.Location = new Point(194, 12);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(466, 29);
-            progressBar1.TabIndex = 2;
             // 
             // FMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(674, 577);
-            Controls.Add(progressBar1);
+            ClientSize = new Size(578, 480);
             Controls.Add(txtLog);
+            Controls.Add(progressBar1);
             Controls.Add(btnStart);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -83,7 +83,7 @@
         #endregion
 
         private Button btnStart;
-        private RichTextBox txtLog;
         private ProgressBar progressBar1;
+        private RichTextBox txtLog;
     }
 }

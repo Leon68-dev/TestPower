@@ -1,3 +1,6 @@
+using System;
+using System.Windows.Forms;
+
 namespace SimpleCpuTestCsUI
 {
     public partial class FMain : Form
@@ -6,9 +9,9 @@ namespace SimpleCpuTestCsUI
         {
             InitializeComponent();
             this.Text = "Simple CPU Benchmark UI";
-            this.Size = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(600, 400);
 
-            // Підписуємося на подію логування
+            // Підписуємося на події
             CpuBenchmark.OnLogReceived += AppendLog;
             CpuBenchmark.OnProgressChanged += UpdateProgress;
         }
@@ -17,7 +20,7 @@ namespace SimpleCpuTestCsUI
         {
             btnStart.Enabled = false;
             txtLog.Clear();
-            progressBar1.Value = 0; // Скидаємо прогрес перед стартом
+            progressBar1.Value = 0;
 
             try
             {
@@ -34,7 +37,6 @@ namespace SimpleCpuTestCsUI
             }
         }
 
-        // Метод для оновлення Progress Bar
         private void UpdateProgress(int value)
         {
             if (progressBar1.InvokeRequired)
@@ -47,10 +49,8 @@ namespace SimpleCpuTestCsUI
             }
         }
 
-
         private void AppendLog(string message)
         {
-            // Оскільки подія може прийти з іншого потоку, перевіряємо InvokeRequired
             if (txtLog.InvokeRequired)
             {
                 txtLog.Invoke(new Action<string>(AppendLog), message);
@@ -58,13 +58,11 @@ namespace SimpleCpuTestCsUI
             else
             {
                 txtLog.AppendText(message);
-                // Автопрокрутка вниз
                 txtLog.SelectionStart = txtLog.Text.Length;
                 txtLog.ScrollToCaret();
             }
         }
 
-        // Відписуємося при закритті форми, щоб уникнути витоків пам'яті
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             CpuBenchmark.OnLogReceived -= AppendLog;
@@ -72,5 +70,4 @@ namespace SimpleCpuTestCsUI
             base.OnFormClosing(e);
         }
     }
-
 }
