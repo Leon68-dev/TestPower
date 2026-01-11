@@ -8,7 +8,7 @@ namespace SimpleCpuTestCsUI
         public FMain()
         {
             InitializeComponent();
-            this.Text = "Simple CPU Benchmark UI";
+            this.Text = "Simple CPU Benchmark";
             this.MinimumSize = new System.Drawing.Size(600, 400);
 
             // Підписуємося на події

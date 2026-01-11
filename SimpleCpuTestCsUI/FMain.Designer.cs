@@ -49,7 +49,7 @@
             progressBar1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             progressBar1.Location = new Point(194, 12);
             progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(372, 29);
+            progressBar1.Size = new Size(576, 29);
             progressBar1.TabIndex = 2;
             // 
             // txtLog
@@ -61,7 +61,7 @@
             txtLog.Location = new Point(12, 47);
             txtLog.Name = "txtLog";
             txtLog.ReadOnly = true;
-            txtLog.Size = new Size(554, 421);
+            txtLog.Size = new Size(758, 494);
             txtLog.TabIndex = 5;
             txtLog.Text = "";
             // 
@@ -69,7 +69,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(578, 480);
+            ClientSize = new Size(782, 553);
             Controls.Add(txtLog);
             Controls.Add(progressBar1);
             Controls.Add(btnStart);
