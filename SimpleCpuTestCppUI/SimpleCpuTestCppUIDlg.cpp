@@ -202,33 +202,29 @@ CString GenerateLogFileName()
 class ThreadLogger
 {
     HWND m_hWnd;
-    CStdioFile m_file;
+    CFile m_file; // Використовуємо CFile замість CStdioFile для прямого запису байтів
     bool m_isFileOpen;
 
 public:
     ThreadLogger(HWND hWnd) : m_hWnd(hWnd), m_isFileOpen(false)
     {
-        // Генеруємо ім'я та відкриваємо файл
         CString fileName = GenerateLogFileName();
 
         CFileException ex;
-        // Відкриваємо для запису (Create), записуємо текст (Text), дозволяємо іншим читати (ShareDenyWrite)
-        if (m_file.Open(fileName, CFile::modeCreate | CFile::modeWrite | CFile::typeText, &ex))
+        // Відкриваємо як Binary, щоб MFC не змінювала наші байти
+        if (m_file.Open(fileName, CFile::modeCreate | CFile::modeWrite | CFile::typeBinary, &ex))
         {
             m_isFileOpen = true;
 
-            // (Опціонально) Записуємо BOM (Byte Order Mark) для Unicode, 
-            // щоб блокнот точно зрозумів, що це UTF-16 LE
-            const unsigned char bom[] = { 0xFF, 0xFE };
-            m_file.Write(bom, 2);
+            // Записуємо BOM для UTF-8 (щоб Блокнот розумів кодування)
+            const unsigned char bom[] = { 0xEF, 0xBB, 0xBF };
+            m_file.Write(bom, 3);
         }
         else
         {
-            // Якщо не вдалося відкрити файл, можна повідомити про помилку, 
-            // але ми просто будемо писати тільки в UI.
             TCHAR szError[1024];
             ex.GetErrorMessage(szError, 1024);
-            ::OutputDebugString(szError); // Вивід у вікно Output в Visual Studio
+            ::OutputDebugString(szError);
         }
     }
 
@@ -242,23 +238,31 @@ public:
 
     void Log(const CString& msg, bool newLine = true)
     {
-        // 1. Відправляємо в UI
+        // 1. Відправляємо в UI (тут все без змін, UI розуміє Unicode)
         CString* pStr = new CString(msg);
         if (newLine) *pStr += L"\r\n";
         ::PostMessage(m_hWnd, WM_APP_LOG_UPDATE, 0, (LPARAM)pStr);
 
-        // 2. Пишемо у файл
+        // 2. Пишемо у файл (Конвертуємо в UTF-8)
         if (m_isFileOpen)
         {
             try
             {
-                m_file.WriteString(msg);
-                if (newLine) m_file.WriteString(L"\n");
+                // Формуємо повний рядок
+                CString fullMsg = msg;
+                if (newLine) fullMsg += L"\r\n";
+
+                // Конвертуємо CString (Unicode) -> UTF-8 (Multibyte)
+                // CT2A - це зручний макрос MFC для конвертації
+                CT2A utf8String(fullMsg, CP_UTF8);
+
+                // Записуємо отримані байти
+                m_file.Write(utf8String.m_psz, (UINT)strlen(utf8String.m_psz));
             }
             catch (CFileException* e)
             {
                 e->Delete();
-                m_isFileOpen = false; // Перестаємо писати при помилці
+                m_isFileOpen = false;
             }
         }
     }
@@ -290,7 +294,11 @@ UINT __cdecl CSimpleCpuTestCppUIDlg::BenchmarkThread(LPVOID pParam)
     CString cpuInfo;
     cpuInfo.Format(L"> Processor: %d Cores. Vendor: %s", std::thread::hardware_concurrency(), GetCpuVendor().c_str());
     logger.Log(cpuInfo);
-    logger.Log(L"> Runtime: Native C++ (MFC)");
+#ifdef _DEBUG
+    logger.Log(L"> Runtime: Native C++ (MFC) - DEBUG MODE (Slow!)");
+#else
+    logger.Log(L"> Runtime: Native C++ (MFC) - RELEASE MODE");
+#endif
     logger.Log(L"");
 
     int totalSteps = 7;
@@ -325,23 +333,68 @@ UINT __cdecl CSimpleCpuTestCppUIDlg::BenchmarkThread(LPVOID pParam)
         };
 
     // --- 1. Integer Tests ---
+    // Використовуємо volatile, щоб компілятор не викидав цикл
     logger.Log(L"* INTEGER ARITHMETIC:");
     std::vector<double> intResults;
 
-    int8_t i8_1 = 10, i8_2 = 5, i8_res = 0;
-    intResults.push_back(RunMipsTest(L"Execute 8 bit Additions", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i8_res = i8_1 + i8_2; }));
-    intResults.push_back(RunMipsTest(L"Execute 8 bit Subtractions", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i8_res = i8_1 - i8_2; }));
-    intResults.push_back(RunMipsTest(L"Execute 8 bit Multiplications", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i8_res = i8_1 * i8_2; }));
-    intResults.push_back(RunMipsTest(L"Execute 8 bit Divisions", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i8_res = i8_1 / i8_2; }));
-    PrintAverage(L"8 bit Integer", intResults);
+    int8_t i8_1 = 10, i8_2 = 5;
+    intResults.push_back(RunMipsTest(L"Execute 8 bit Additions", INT_OPERATIONS, [&]() {
+        volatile int8_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i8_1 + i8_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 8 bit Subtractions", INT_OPERATIONS, [&]() {
+        volatile int8_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i8_1 - i8_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 8 bit Multiplications", INT_OPERATIONS, [&]() {
+        volatile int8_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i8_1 * i8_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 8 bit Divisions", INT_OPERATIONS, [&]() {
+        volatile int8_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i8_1 / i8_2;
+        }));
+    PrintAverage(L"8 BIT INTEGER", intResults);
     intResults.clear();
 
-    int32_t i32_1 = 10, i32_2 = 5, i32_res = 0;
-    intResults.push_back(RunMipsTest(L"Execute 32 bit Additions", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i32_res = i32_1 + i32_2; }));
-    intResults.push_back(RunMipsTest(L"Execute 32 bit Subtractions", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i32_res = i32_1 - i32_2; }));
-    intResults.push_back(RunMipsTest(L"Execute 32 bit Multiplications", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i32_res = i32_1 * i32_2; }));
-    intResults.push_back(RunMipsTest(L"Execute 32 bit Divisions", INT_OPERATIONS, [&]() { for (long long i = 0; i < INT_OPERATIONS; ++i) i32_res = i32_1 / i32_2; }));
-    PrintAverage(L"32 bit Integer", intResults);
+    int16_t i16_1 = 10, i16_2 = 5;
+    intResults.push_back(RunMipsTest(L"Execute 16 bit Additions", INT_OPERATIONS, [&]() {
+        volatile int16_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i16_1 + i16_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 16 bit Subtractions", INT_OPERATIONS, [&]() {
+        volatile int16_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i16_1 - i16_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 16 bit Multiplications", INT_OPERATIONS, [&]() {
+        volatile int16_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i16_1 * i16_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 16 bit Divisions", INT_OPERATIONS, [&]() {
+        volatile int16_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i16_1 / i16_2;
+        }));
+    PrintAverage(L"16 BIT INTEGER", intResults);
+    intResults.clear();
+
+    int32_t i32_1 = 10, i32_2 = 5;
+    intResults.push_back(RunMipsTest(L"Execute 32 bit Additions", INT_OPERATIONS, [&]() {
+        volatile int32_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i32_1 + i32_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 32 bit Subtractions", INT_OPERATIONS, [&]() {
+        volatile int32_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i32_1 - i32_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 32 bit Multiplications", INT_OPERATIONS, [&]() {
+        volatile int32_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i32_1 * i32_2;
+        }));
+    intResults.push_back(RunMipsTest(L"Execute 32 bit Divisions", INT_OPERATIONS, [&]() {
+        volatile int32_t res;
+        for (long long i = 0; i < INT_OPERATIONS; ++i) res = i32_1 / i32_2;
+        }));
+    PrintAverage(L"32 BIT INTEGER", intResults);
 
     ::PostMessage(hWnd, WM_APP_PROGRESS_UPDATE, (WPARAM)(++currentStep * 100 / totalSteps), 0);
 
@@ -349,14 +402,42 @@ UINT __cdecl CSimpleCpuTestCppUIDlg::BenchmarkThread(LPVOID pParam)
     logger.Log(L"* FLOATING POINT ARITHMETIC:");
     std::vector<double> floatResults;
 
-    float f1 = 1.23f, f2 = 4.56f, fRes = 0;
-    floatResults.push_back(RunMipsTest(L"Execute 32 bit (Single) Additions", FLOAT_OPERATIONS, [&]() { for (long long i = 0; i < FLOAT_OPERATIONS; ++i) fRes = f1 + f2; }));
-    floatResults.push_back(RunMipsTest(L"Execute 32 bit (Single) Multiplications", FLOAT_OPERATIONS, [&]() { for (long long i = 0; i < FLOAT_OPERATIONS; ++i) fRes = f1 * f2; }));
+    float f1 = 1.23f, f2 = 4.56f;
+    floatResults.push_back(RunMipsTest(L"Execute 32 bit (Single) Additions", FLOAT_OPERATIONS, [&]() {
+        volatile float res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = f1 + f2;
+        }));
+    floatResults.push_back(RunMipsTest(L"Execute 32 bit (Single) Subtractions", FLOAT_OPERATIONS, [&]() {
+        volatile float res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = f1 - f2;
+        }));
+    floatResults.push_back(RunMipsTest(L"Execute 32 bit (Single) Multiplications", FLOAT_OPERATIONS, [&]() {
+        volatile float res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = f1 * f2;
+        }));
+    floatResults.push_back(RunMipsTest(L"Execute 32 bit (Single) Divisions", FLOAT_OPERATIONS, [&]() {
+        volatile float res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = f1 / f2;
+        }));
 
-    double d1 = 1.23, d2 = 4.56, dRes = 0;
-    floatResults.push_back(RunMipsTest(L"Execute 64 bit (Double) Additions", FLOAT_OPERATIONS, [&]() { for (long long i = 0; i < FLOAT_OPERATIONS; ++i) dRes = d1 + d2; }));
-    floatResults.push_back(RunMipsTest(L"Execute 64 bit (Double) Multiplications", FLOAT_OPERATIONS, [&]() { for (long long i = 0; i < FLOAT_OPERATIONS; ++i) dRes = d1 * d2; }));
-    PrintAverage(L"Floating Point", floatResults);
+    double d1 = 1.23, d2 = 4.56;
+    floatResults.push_back(RunMipsTest(L"Execute 64 bit (Double) Additions", FLOAT_OPERATIONS, [&]() {
+        volatile double res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = d1 + d2;
+        }));
+    floatResults.push_back(RunMipsTest(L"Execute 64 bit (Double) Subtractions", FLOAT_OPERATIONS, [&]() {
+        volatile double res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = d1 - d2;
+        }));
+    floatResults.push_back(RunMipsTest(L"Execute 64 bit (Double) Multiplications", FLOAT_OPERATIONS, [&]() {
+        volatile double res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = d1 * d2;
+        }));
+    floatResults.push_back(RunMipsTest(L"Execute 64 bit (Double) Divisions", FLOAT_OPERATIONS, [&]() {
+        volatile double res;
+        for (long long i = 0; i < FLOAT_OPERATIONS; ++i) res = d1 / d2;
+        }));
+    PrintAverage(L"FLOATING POINT", floatResults);
 
     ::PostMessage(hWnd, WM_APP_PROGRESS_UPDATE, (WPARAM)(++currentStep * 100 / totalSteps), 0);
 
@@ -364,19 +445,43 @@ UINT __cdecl CSimpleCpuTestCppUIDlg::BenchmarkThread(LPVOID pParam)
     logger.Log(L"* MATH FUNCTIONS:");
     std::vector<double> funcResults;
     double num = 1234567890.0;
-    funcResults.push_back(RunMipsTest(L"Square Root", FUNC_OPERATIONS, [&]() { for (long long i = 0; i < FUNC_OPERATIONS; ++i) dRes = sqrt(num); }));
-    funcResults.push_back(RunMipsTest(L"Sinus", FUNC_OPERATIONS, [&]() { for (long long i = 0; i < FUNC_OPERATIONS; ++i) dRes = sin(0.785); }));
-    PrintAverage(L"Math Functions", funcResults);
+    funcResults.push_back(RunMipsTest(L"Square Root", FUNC_OPERATIONS, [&]() {
+        volatile double res;
+        for (long long i = 0; i < FUNC_OPERATIONS; ++i) res = sqrt(num);
+        }));
+    funcResults.push_back(RunMipsTest(L"Sinus", FUNC_OPERATIONS, [&]() {
+        volatile double res;
+        for (long long i = 0; i < FUNC_OPERATIONS; ++i) res = sin(0.785);
+        }));
+    funcResults.push_back(RunMipsTest(L"Cosinus", FUNC_OPERATIONS, [&]() {
+        volatile double res;
+        for (long long i = 0; i < FUNC_OPERATIONS; ++i) res = cos(0.785);
+        }));
+    PrintAverage(L"MATH FUNCTIONS", funcResults);
 
     ::PostMessage(hWnd, WM_APP_PROGRESS_UPDATE, (WPARAM)(++currentStep * 100 / totalSteps), 0);
 
     // --- 4. Logical ---
     logger.Log(L"* LOGICAL INSTRUCTIONS:");
     std::vector<double> logicResults;
-    int v1 = 0xAAAAAAAA, v2 = 0x55555555, vRes = 0;
-    logicResults.push_back(RunMipsTest(L"Logical AND", LOGICAL_OPERATIONS, [&]() { for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) vRes = v1 & v2; }));
-    logicResults.push_back(RunMipsTest(L"Logical OR", LOGICAL_OPERATIONS, [&]() { for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) vRes = v1 | v2; }));
-    PrintAverage(L"Logical", logicResults);
+    int v1 = 0xAAAAAAAA, v2 = 0x55555555;
+    logicResults.push_back(RunMipsTest(L"Logical AND Instruction", LOGICAL_OPERATIONS, [&]() {
+        volatile int res;
+        for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = v1 & v2;
+        }));
+    logicResults.push_back(RunMipsTest(L"Logical OR Instruction", LOGICAL_OPERATIONS, [&]() {
+        volatile int res;
+        for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = v1 | v2;
+        }));
+    logicResults.push_back(RunMipsTest(L"Logical XOR Instruction", LOGICAL_OPERATIONS, [&]() {
+        volatile int res;
+        for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = v1 ^ v2;
+        }));
+    logicResults.push_back(RunMipsTest(L"Logical NOT Instruction", LOGICAL_OPERATIONS, [&]() {
+        volatile int res;
+        for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = ~v1;
+        }));
+    PrintAverage(L"LOGICAL", logicResults);
 
     ::PostMessage(hWnd, WM_APP_PROGRESS_UPDATE, (WPARAM)(++currentStep * 100 / totalSteps), 0);
 
@@ -440,7 +545,6 @@ UINT __cdecl CSimpleCpuTestCppUIDlg::BenchmarkThread(LPVOID pParam)
     auto totalEnd = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> totalDuration = totalEnd - totalStart;
 
-    // Розрахунок годин, хвилин, секунд
     long long totalMs = std::chrono::duration_cast<std::chrono::milliseconds>(totalDuration).count();
     int h = (int)(totalMs / 3600000);
     int m = (int)((totalMs % 3600000) / 60000);
@@ -461,6 +565,7 @@ UINT __cdecl CSimpleCpuTestCppUIDlg::BenchmarkThread(LPVOID pParam)
     ::PostMessage(hWnd, WM_APP_BENCHMARK_FINISHED, 0, 0);
     return 0;
 }
+
 
 // Інші стандартні методи MFC (SysCommand, Paint, DragIcon) залишаються без змін...
 void CSimpleCpuTestCppUIDlg::OnSysCommand(UINT nID, LPARAM lParam)
