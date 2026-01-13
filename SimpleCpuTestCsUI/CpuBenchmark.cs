@@ -464,25 +464,25 @@ namespace SimpleCpuTestCsUI
 
             int val1 = unchecked((int)0xAAAAAAAA), val2 = 0x55555555; int res = 0;
 
-            results.Add(RunMipsTest("Logical And Instruction", LOGICAL_OPERATIONS, () =>
+            results.Add(RunMipsTest("Logical AND", LOGICAL_OPERATIONS, () =>
             {
                 for (long i = 0; i < LOGICAL_OPERATIONS; i++)
                     res = val1 & val2;
             }));
 
-            results.Add(RunMipsTest("Logical Or Instruction", LOGICAL_OPERATIONS, () =>
+            results.Add(RunMipsTest("Logical OR", LOGICAL_OPERATIONS, () =>
             {
                 for (long i = 0; i < LOGICAL_OPERATIONS; i++)
                     res = val1 | val2;
             }));
 
-            results.Add(RunMipsTest("Logical Xor Instruction", LOGICAL_OPERATIONS, () =>
+            results.Add(RunMipsTest("Logical XOR", LOGICAL_OPERATIONS, () =>
             {
                 for (long i = 0; i < LOGICAL_OPERATIONS; i++)
                     res = val1 ^ val2;
             }));
 
-            results.Add(RunMipsTest("Logical Not Instruction", LOGICAL_OPERATIONS, () =>
+            results.Add(RunMipsTest("Logical NOT", LOGICAL_OPERATIONS, () =>
             {
                 for (long i = 0; i < LOGICAL_OPERATIONS; i++)
                     res = ~val1;

@@ -465,19 +465,19 @@ UINT __cdecl CSimpleCpuTestCppUIDlg::BenchmarkThread(LPVOID pParam)
     logger.Log(L"* LOGICAL INSTRUCTIONS:");
     std::vector<double> logicResults;
     int v1 = 0xAAAAAAAA, v2 = 0x55555555;
-    logicResults.push_back(RunMipsTest(L"Logical AND Instruction", LOGICAL_OPERATIONS, [&]() {
+    logicResults.push_back(RunMipsTest(L"Logical AND", LOGICAL_OPERATIONS, [&]() {
         volatile int res;
         for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = v1 & v2;
         }));
-    logicResults.push_back(RunMipsTest(L"Logical OR Instruction", LOGICAL_OPERATIONS, [&]() {
+    logicResults.push_back(RunMipsTest(L"Logical OR", LOGICAL_OPERATIONS, [&]() {
         volatile int res;
         for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = v1 | v2;
         }));
-    logicResults.push_back(RunMipsTest(L"Logical XOR Instruction", LOGICAL_OPERATIONS, [&]() {
+    logicResults.push_back(RunMipsTest(L"Logical XOR", LOGICAL_OPERATIONS, [&]() {
         volatile int res;
         for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = v1 ^ v2;
         }));
-    logicResults.push_back(RunMipsTest(L"Logical NOT Instruction", LOGICAL_OPERATIONS, [&]() {
+    logicResults.push_back(RunMipsTest(L"Logical NOT", LOGICAL_OPERATIONS, [&]() {
         volatile int res;
         for (long long i = 0; i < LOGICAL_OPERATIONS; ++i) res = ~v1;
         }));
