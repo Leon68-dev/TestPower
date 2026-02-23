@@ -4,10 +4,11 @@ namespace TestPowerSumNetCore
 {
     class TestCalcSum
     {
+        public const long countIterations = 1000000000;
         private void check()
         {
             long cc = 0;
-            for (long i = 0; i < 1000000000; i++)
+            for (long i = 0; i < countIterations; i++)
             {
                 cc++;
             }
@@ -31,7 +32,7 @@ namespace TestPowerSumNetCore
         {
             TestCalcSum testPower = new TestCalcSum();
             
-            Console.WriteLine("Test calculate sum 1 to 1 000 000 000\n");
+            Console.WriteLine($"Test calculate sum 1 to {TestCalcSum.countIterations}\n");
 
             Console.WriteLine("press any key to start...");
             Console.ReadLine();
