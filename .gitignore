@@ -8,6 +8,8 @@
 /TestPower_CS/obj
 
 /TestPower_VC/Debug
+/TestPower_VC/Release
+/TestPower_VC/TestPower_VC.vcxproj.user
 
 /TestPowerSumNet/bin
 /TestPowerSumNet/obj
