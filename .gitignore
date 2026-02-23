@@ -31,8 +31,8 @@
 /CpuBenchmark/bin
 /CpuBenchmark/obj
 
-/SimpleCpuTest/bin
-/SimpleCpuTest/obj
+/SimpleCpuTestCS/bin
+/SimpleCpuTestCS/obj
 
 /TestPowerSumNetCore/bin
 /TestPowerSumNetCore/obj
