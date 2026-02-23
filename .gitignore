@@ -47,3 +47,7 @@
 
 /x64/*
 /SimpleCpuTestCppUI/x64/*
+/SimpleCpuTestCppUI/SimpleCpuTestCppUI.vcxproj.user
+
+/SimpleCpuTestCPP/x64/*
+/SimpleCpuTestCPP/SimpleCpuTestCPP.vcxproj.user

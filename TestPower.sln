@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleCpuTestCppUI", "Simpl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCpuTestCS", "SimpleCpuTestCS\SimpleCpuTestCS.csproj", "{E03657D8-5F16-D965-0BBB-55D0D5FBC618}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimpleCpuTestCPP", "SimpleCpuTestCPP\SimpleCpuTestCPP.vcxproj", "{97ED728B-E0B9-4ADF-B86F-8B7437135C92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,14 @@ Global
 		{E03657D8-5F16-D965-0BBB-55D0D5FBC618}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E03657D8-5F16-D965-0BBB-55D0D5FBC618}.Release|x86.ActiveCfg = Release|Any CPU
 		{E03657D8-5F16-D965-0BBB-55D0D5FBC618}.Release|x86.Build.0 = Release|Any CPU
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Debug|Any CPU.Build.0 = Debug|x64
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Debug|x86.ActiveCfg = Debug|Win32
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Debug|x86.Build.0 = Debug|Win32
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Release|Any CPU.ActiveCfg = Release|x64
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Release|Any CPU.Build.0 = Release|x64
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Release|x86.ActiveCfg = Release|Win32
+		{97ED728B-E0B9-4ADF-B86F-8B7437135C92}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
